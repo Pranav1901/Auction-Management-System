@@ -2,10 +2,10 @@
 OOP PBL AUCTION
 Grp Members:-
 Name		     Gr		 Roll
-Pranav Rodge	  21910464	233053
+Pranav Rodge	  21910__	23305
 Pratham Solanki   21910112	233061
-Chaitanya Uge	  21910718	233064
-Yash Chaudhari	  21910388	233066
+Chaitanya Uge	  21910__	23306
+Yash Chaudhari	  21910___	233066
 *************/
 
 #include <iostream>
@@ -21,24 +21,27 @@ class item
 	    string name_of_item, name_of_owner, desc;
 	    float price;
 	    int b_id;
+
 };
 
-void create(item obj1)
+item create(item obji)
 {
 	cout<<"\nEnter the Name of the Item\n";
-	getline(cin, obj1.name_of_item);
+	getline(cin, obji.name_of_item);
 	cout<<"\nEnter the Name of the Owner\n";
-	getline(cin, obj1.name_of_owner);
+	getline(cin, obji.name_of_owner);
 	cout<<"\nEnter Description of Item in less than 50 words\n";
-	getline(cin, obj1.desc);
-
-
-	cout<<obj1.name_of_item<<"\t"<<obj1.name_of_owner<<"\t"<<obj1.desc<<endl;
+	getline(cin, obji.desc);
+	
+	
+	cout<<obji.name_of_item<<"\t"<<obji.name_of_owner<<"\t"<<obji.desc<<endl;
+	return (obji);
 }
 
-void disp(item objd)
+void disp(item obji)
 {
-    cout<<objd.name_of_item<<"\t"<<objd.name_of_owner<<"\t"<<objd.desc<<endl;
+    cout<<obji.name_of_item<<"\t"<<obji.name_of_owner<<"\t"<<obji.desc<<endl;
+
 }
 
 void auction(item objs[], int n)
@@ -63,23 +66,23 @@ void auction(item objs[], int n)
 		getline(cin, name[(i - 1)]);
 		cout<<"\nThe Auctioning ID of Auctioneer "<<name[(i - 1)]<<" is "<<i<<endl;
 	}
-
+	
 	for(i = 0; i < n; i++)
 	{
 		cout<<"\nItem on sale is:\nName:\t"<<objs[i].name_of_item<<"\nDesc\t"<<objs[i].desc<<endl;
-    	cout<<"\nBase Price: ₹100.00\n";
-
+    	cout<<"\nBase Price: ?100.00\n";
+    	
     	do
     	{
         	Lab: cout<<"\nBidder Input Price as: Bidder_ID Price\n";
         	cin>>j>>price;
-
+        	
         	if(((price < 100.00) || (price < pre)) || ((j < 1) || (j > no)))
         	{
         	    cout<<"\nCannot Except Either ID or Price\n";
         	    goto Lab;
         	}
-
+        	
         	else
         	{
         	    pre = price;
@@ -88,13 +91,13 @@ void auction(item objs[], int n)
         	    cout<<"\nDoes anybody else wants to bid?(N/n to Exit)\n";
         	    cin>>ch;
         	}
-
+        	
     	}while((ch != 'n') || (ch != 'N'));
-
+        	
 	}
-
+	
 	cout<<"\nAuction Complete!\nThe List of Items Sold and to whom at price are:\nName of Item\tOwner ID\nPrice\n";
-
+	
 	for(i = 0; i < n; i++)
 	{
 	    cout<<objs[i].name_of_item<<"\t"<<objs[i].b_id<<"\t"<<objs[i].price<<endl;
@@ -115,12 +118,12 @@ int main()
 		cout<<"\nInvalid Input\n";
 		goto L0;
 	}
-
+	
 	cin.ignore();
-
+	
 	for(i = 0; i < n; i++)
 	{
-		create(obj[i]);
+	   obj[i]=create(obj[i]);
 	}
 
 	while(i != 5)
@@ -140,12 +143,14 @@ int main()
 					cout<<"\nInvalid Input\n";
 					goto L;
 				}
-
+				
+				
 				cin.ignore();
 
 				for(i = 0; i < n; i++)
 				{
-					create(obj[i]);
+				  obj[i]=create(obj[i]);
+				
 				}
 
 				break;
@@ -167,28 +172,28 @@ int main()
 					cout<<"\nInvalid Input\n";
 					goto L1;
 				}
-
+				
 				cin.ignore();
 
 				for(int j = 0; j < i; j++)//(i + n) < 11; i++)
 				{
-					create(obj[(i + n - 1)]);
+				    create(obj[(i + n - 1)]);
 				}
 
 				n += i;
 				break;
 			}
-
+			
 			case 3:
 			{//Display
 			    cout<<"\nName of item\tName of Owner\tDescription\n";
-
+			    
 			    for(i = 0; i < n; i++)
 			    {
 			        disp(obj[i]);
-			        //cout<<obj[i].name_of_item<<"\t"<<obj[i].name_of_owner<<"\t"<<obj[i].desc<<endl;
+			       // cout<<obj[i].name_of_item<<"\t"<<obj[i].name_of_owner<<"\t"<<obj[i].desc<<endl;
 			    }
-
+			    
 			    break;
 			}
 
@@ -203,10 +208,10 @@ int main()
     			{
     				auction(obj, n);
     			}
-
+    			
 				break;
 			}
-
+			
 			case 5:
 			{//exit
 				cout<<"\nExitting...\n";
